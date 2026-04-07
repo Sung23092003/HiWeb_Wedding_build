@@ -12,15 +12,37 @@ if (window.openingEffectManager) {
     }
 
     isInEditorMode() {
+      const forcePreview =
+        window.__allowOpeningEffectPreview === true ||
+        document.body?.getAttribute("data-opening-preview") === "true" ||
+        document.documentElement?.getAttribute("data-opening-preview") ===
+          "true";
+
+      if (forcePreview) {
+        return false;
+      }
+
+      const hasEditorHook =
+        window.__htmlEditorHooked === true ||
+        !!document.getElementById("__html_editor_hook__");
+
+      if (hasEditorHook) {
+        return true;
+      }
+
       let topUrl = "";
+      let topSearch = "";
+
       try {
         topUrl = window.top.location.href.toLowerCase();
+        topSearch = window.top.location.search || "";
       } catch (e) {
         topUrl = window.location.href.toLowerCase();
+        topSearch = window.location.search || "";
       }
 
       const urlParams = new URLSearchParams(window.location.search);
-      const topParams = new URLSearchParams(window.top.location.search);
+      const topParams = new URLSearchParams(topSearch);
 
       const isPreview =
         urlParams.get("preview") === "true" ||
@@ -33,13 +55,11 @@ if (window.openingEffectManager) {
 
       const isEditor = Object.values(checkDetails).some((val) => val === true);
 
-      if (isEditor) {
-        return isEditor;
-      } else if (isPreview) {
-        return false;
-      } else {
+      if (isPreview) {
         return false;
       }
+
+      return isEditor;
     }
 
     /**

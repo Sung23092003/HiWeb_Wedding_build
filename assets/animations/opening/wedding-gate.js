@@ -261,6 +261,54 @@
     .gate-container.shaking {
       animation: gateShake 0.5s ease;
     }
+
+    /* Progress Bar Styles */
+    .progress-container {
+      position: absolute;
+      bottom: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 180px;
+      height: 3px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 2px;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 50;
+    }
+
+    .progress-container.show {
+      opacity: 1;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #c9a84c 0%, #e8cc82 100%);
+      width: 0%;
+      transition: width 0.1s linear;
+      border-radius: 2px;
+      box-shadow: 0 0 8px rgba(201, 168, 76, 0.6);
+    }
+
+    .progress-text {
+      position: absolute;
+      bottom: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      color: rgba(255, 255, 255, 0.7);
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+      z-index: 50;
+    }
+
+    .progress-text.show {
+      opacity: 1;
+    }
   `;
 
   const styleSheet = document.createElement("style");
@@ -377,6 +425,11 @@
         <div class="gc-date">${templateData.eventDate || "Date"}</div>
       </div>
 
+      <div class="progress-container" id="progressContainer">
+        <div class="progress-bar" id="progressBar"></div>
+      </div>
+      <div class="progress-text" id="progressText">0%</div>
+
       <div class="bell-wrap" id="bellWrap" onclick="ringBell()">
         <div class="bell-chain"></div>
         <svg class="bell-svg" id="bellSvg" width="64" height="72" viewBox="0 0 64 72" xmlns="http://www.w3.org/2000/svg">
@@ -437,7 +490,7 @@
       tone(1320, 0.18, 1.6);
       tone(2200, 0.08, 0.9);
       tone(440, 0.12, 2.8);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   function ringBell() {
@@ -472,10 +525,34 @@
     const bellWrap = shadowRoot.getElementById("bellWrap");
     const gateWrap = shadowRoot.getElementById("gateWrap");
     const hostElement = shadowRoot.host;
+    const progressContainer = shadowRoot.getElementById("progressContainer");
+    const progressBar = shadowRoot.getElementById("progressBar");
+    const progressText = shadowRoot.getElementById("progressText");
 
     openBtn.classList.add("gone");
     bellWrap.style.pointerEvents = "none";
     gateWrap.classList.add("open");
+
+    // ✅ Bắt đầu animation progress
+    progressContainer.classList.add("show");
+    progressText.classList.add("show");
+
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += Math.random() * 15; // Random increment từ 0-15%
+      if (progress > 100) progress = 100;
+
+      progressBar.style.width = progress + "%";
+      progressText.textContent = Math.floor(progress) + "%";
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          progressContainer.classList.remove("show");
+          progressText.classList.remove("show");
+        }, 300);
+      }
+    }, 150); // Cập nhật mỗi 150ms
 
     setTimeout(() => {
       hostElement.classList.add("away");

@@ -80,6 +80,49 @@
       font-size: 0.9rem;
       opacity: 0.8;
     }
+
+    /* Progress Bar Styles */
+    .progress-container {
+      position: absolute;
+      bottom: -60px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 200px;
+      height: 4px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 2px;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .progress-container.show {
+      opacity: 1;
+    }
+
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+      width: 0%;
+      transition: width 0.1s linear;
+      border-radius: 2px;
+    }
+
+    .progress-text {
+      position: absolute;
+      bottom: -80px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-size: 0.85rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .progress-text.show {
+      opacity: 0.8;
+    }
   `;
 
   const styleSheet = document.createElement("style");
@@ -98,6 +141,10 @@
           <div class="ec-date">${templateData.eventDate}</div>
         </div>
         <div class="open-hint">Click to open</div>
+        <div class="progress-container" id="progressContainer">
+          <div class="progress-bar" id="progressBar"></div>
+        </div>
+        <div class="progress-text" id="progressText">0%</div>
       </div>
     </div>
   `;
@@ -107,11 +154,40 @@
   // --- 3. LOGIC ---
   const envelope = shadowRoot.getElementById("envelope");
   const hostElement = shadowRoot.host;
+  const progressContainer = shadowRoot.getElementById("progressContainer");
+  const progressBar = shadowRoot.getElementById("progressBar");
+  const progressText = shadowRoot.getElementById("progressText");
   let isOpened = false;
+  let isOpening = false;
+
+  function animateProgress() {
+    progressContainer.classList.add("show");
+    progressText.classList.add("show");
+
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += Math.random() * 15; // Random increment từ 0-15%
+      if (progress > 100) progress = 100;
+
+      progressBar.style.width = progress + "%";
+      progressText.textContent = Math.floor(progress) + "%";
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          progressContainer.classList.remove("show");
+          progressText.classList.remove("show");
+        }, 300);
+      }
+    }, 150); // Cập nhật mỗi 150ms
+  }
 
   function openEnvelope() {
-    if (isOpened) return;
-    isOpened = true;
+    if (isOpened || isOpening) return;
+    isOpening = true;
+
+    // ✅ Bắt đầu animation progress
+    animateProgress();
 
     envelope.classList.add("open");
 
@@ -122,6 +198,7 @@
         main.style.display = "block";
         main.classList.add("show");
       }
+      isOpened = true;
     }, 1500);
   }
 
