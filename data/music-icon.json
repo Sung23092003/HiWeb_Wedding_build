@@ -1,0 +1,26 @@
+[
+  {
+    "id": "1000",
+    "url": "/assets/images/music/music.png"
+  },
+  {
+    "id": "1001",
+    "url": "/assets/images/music/playing-icon.png"
+  },
+  {
+    "id": "1002",
+    "url": "/assets/images/music/playing-icon2.jpg"
+  },
+  {
+    "id": "1003",
+    "url": "/assets/images/music/playing-icon3.jpg"
+  },
+  {
+    "id": "1004",
+    "url": "/assets/images/music/playing-icon4.jpg"
+  },
+  {
+    "id": "1005",
+    "url": "/assets/images/music/playing-icon5.png"
+  }
+]

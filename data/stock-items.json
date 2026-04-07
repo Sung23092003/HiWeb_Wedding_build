@@ -1,0 +1,124 @@
+{
+  "items": [
+    {
+      "id": "heart-01",
+      "name": "Red Heart",
+      "category": "Hearts",
+      "tags": ["love", "romantic", "red"],
+      "thumbnailUrl": "/assets/stock/thumbnails/heart-01.png",
+      "imageUrl": "/assets/stock/images/heart-01.png",
+      "width": 200,
+      "height": 200
+    },
+    {
+      "id": "heart-02",
+      "name": "Pink Heart",
+      "category": "Hearts",
+      "tags": ["love", "romantic", "pink"],
+      "thumbnailUrl": "/assets/stock/thumbnails/heart-02.png",
+      "imageUrl": "/assets/stock/images/heart-02.png",
+      "width": 180,
+      "height": 180
+    },
+    {
+      "id": "heart-03",
+      "name": "Gold Heart",
+      "category": "Hearts",
+      "tags": ["love", "romantic", "gold", "luxury"],
+      "thumbnailUrl": "/assets/stock/thumbnails/heart-03.png",
+      "imageUrl": "/assets/stock/images/heart-03.png",
+      "width": 220,
+      "height": 220
+    },
+    {
+      "id": "heart-04",
+      "name": "Purple Heart",
+      "category": "Hearts",
+      "tags": ["love", "romantic", "purple"],
+      "thumbnailUrl": "/assets/stock/thumbnails/heart-04.png",
+      "imageUrl": "/assets/stock/images/heart-04.png",
+      "width": 190,
+      "height": 190
+    },
+    {
+      "id": "flower-01",
+      "name": "Pink Flower",
+      "category": "Flowers",
+      "tags": ["flower", "pink", "nature", "bloom"],
+      "thumbnailUrl": "/assets/stock/thumbnails/flower-01.png",
+      "imageUrl": "/assets/stock/images/flower-01.png",
+      "width": 250,
+      "height": 250
+    },
+    {
+      "id": "flower-02",
+      "name": "Red Rose",
+      "category": "Flowers",
+      "tags": ["flower", "rose", "red", "nature"],
+      "thumbnailUrl": "/assets/stock/thumbnails/flower-02.png",
+      "imageUrl": "/assets/stock/images/flower-02.png",
+      "width": 240,
+      "height": 280
+    },
+    {
+      "id": "flower-03",
+      "name": "Sunflower",
+      "category": "Flowers",
+      "tags": ["flower", "yellow", "nature", "bloom"],
+      "thumbnailUrl": "/assets/stock/thumbnails/flower-03.png",
+      "imageUrl": "/assets/stock/images/flower-03.png",
+      "width": 260,
+      "height": 260
+    },
+    {
+      "id": "flower-04",
+      "name": "White Lily",
+      "category": "Flowers",
+      "tags": ["flower", "white", "nature", "elegant"],
+      "thumbnailUrl": "/assets/stock/thumbnails/flower-04.png",
+      "imageUrl": "/assets/stock/images/flower-04.png",
+      "width": 230,
+      "height": 250
+    },
+    {
+      "id": "decoration-01",
+      "name": "Ribbon Bow",
+      "category": "Decorations",
+      "tags": ["decoration", "ribbon", "bow", "gift"],
+      "thumbnailUrl": "/assets/stock/thumbnails/decoration-01.png",
+      "imageUrl": "/assets/stock/images/decoration-01.png",
+      "width": 200,
+      "height": 150
+    },
+    {
+      "id": "decoration-02",
+      "name": "Confetti",
+      "category": "Decorations",
+      "tags": ["decoration", "confetti", "celebration", "party"],
+      "thumbnailUrl": "/assets/stock/thumbnails/decoration-02.png",
+      "imageUrl": "/assets/stock/images/decoration-02.png",
+      "width": 300,
+      "height": 200
+    },
+    {
+      "id": "decoration-03",
+      "name": "Star",
+      "category": "Decorations",
+      "tags": ["decoration", "star", "sparkle", "shine"],
+      "thumbnailUrl": "/assets/stock/thumbnails/decoration-03.png",
+      "imageUrl": "/assets/stock/images/decoration-03.png",
+      "width": 180,
+      "height": 180
+    },
+    {
+      "id": "decoration-04",
+      "name": "Butterfly",
+      "category": "Decorations",
+      "tags": ["decoration", "butterfly", "nature", "insect"],
+      "thumbnailUrl": "/assets/stock/thumbnails/decoration-04.png",
+      "imageUrl": "/assets/stock/images/decoration-04.png",
+      "width": 220,
+      "height": 200
+    }
+  ]
+}
