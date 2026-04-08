@@ -183,18 +183,46 @@ if (window.openingEffectManager) {
     }
 
     cleanup() {
-      if (this.shadowRoot) this.shadowRoot.innerHTML = "";
+      // Clear shadow DOM completely
+      if (this.shadowRoot) {
+        this.shadowRoot.innerHTML = "";
+        try {
+          this.shadowRoot.host?.classList?.remove("away");
+        } catch (e) {
+          // ignore
+        }
+      }
+
+      // Remove old scripts
       const script = document.querySelector(`script[data-opening-script]`);
       if (script) script.remove();
+
+      // Cancel any pending animations
+      if (this.currentEffect) {
+        const children = this.shadowRoot?.querySelectorAll("*") || [];
+        children.forEach((el) => {
+          el.style.animation = "none";
+        });
+      }
+
+      // Clear effect data
       delete window.__openingEffectData;
+      this.currentEffect = null;
     }
   }
 
   window.openingEffectManager = new OpeningEffectManager();
 
   const runInit = () => {
-    // Không cần truyền tham số, hàm sẽ tự lấy data-opening-effect từ #intro
-    window.openingEffectManager.init();
+    // Chỉ tự động chạy hiệu ứng khi có flag data-opening-preview="true"
+    // Nếu không có flag này, manager sẽ khởi tạo nhưng không chạy hiệu ứng
+    const shouldAutoPreview =
+      document.body?.getAttribute("data-opening-preview") === "true" ||
+      document.documentElement?.getAttribute("data-opening-preview") === "true";
+
+    if (shouldAutoPreview) {
+      window.openingEffectManager.init();
+    }
   };
 
   if (document.readyState === "loading") {
