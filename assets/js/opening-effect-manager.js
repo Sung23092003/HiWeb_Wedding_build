@@ -6,6 +6,8 @@ if (window.openingEffectManager) {
       this.effectMap = {
         envelope: "/assets/animations/opening/envelope.js",
         door: "/assets/animations/opening/wedding-gate.js",
+        camera: "/assets/animations/opening/camera.js",
+        heartcard: "/assets/animations/opening/heart-card.js",
       };
       this.currentEffect = null;
       this.shadowRoot = null;
