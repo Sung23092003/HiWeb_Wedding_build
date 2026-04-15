@@ -221,13 +221,13 @@
       <div class="camera-wrapper">
         <div class="hint" id="hint-shutter"></div>
         <img
-          src="assets/images/opening-animations/camera/2.png"
+          src="/assets/images/opening-animations/camera/2.png"
           id="camera-display"
           class="camera-img"
           alt="Camera"
         />
         <div class="arrow-hint" id="arrow-hint">
-          <img src="assets/images/opening-animations/camera/hint.png" alt="Click to capture" />
+          <img src="/assets/images/opening-animations/camera/hint.png" alt="Click to capture" />
         </div>
         <div id="shutter-btn" onclick="startCameraSequence()"></div>
 
@@ -249,10 +249,10 @@
   // 1. Danh sách từ 3.jpg đến 26.jpg
   const frames = [];
   for (let i = 3; i <= 26; i++) {
-    frames.push(`assets/images/opening-animations/camera/${i}.png`);
+    frames.push(`/assets/images/opening-animations/camera/${i}.png`);
   }
 
-  const FLOWER_GIF = "assets/images/opening-animations/camera/bloom.gif";
+  const FLOWER_GIF = "/assets/images/opening-animations/camera/bloom.gif";
   let currentFrame = 0;
 
   // Preload ảnh

@@ -216,13 +216,15 @@ if (window.openingEffectManager) {
   window.openingEffectManager = new OpeningEffectManager();
 
   const runInit = () => {
-    // Chỉ tự động chạy hiệu ứng khi có flag data-opening-preview="true"
-    // Nếu không có flag này, manager sẽ khởi tạo nhưng không chạy hiệu ứng
-    const shouldAutoPreview =
-      document.body?.getAttribute("data-opening-preview") === "true" ||
-      document.documentElement?.getAttribute("data-opening-preview") === "true";
+    const hasOpeningEffect =
+      !!document.getElementById("intro")?.getAttribute("data-opening-effect") ||
+      !!document.body?.getAttribute("data-opening-effect") ||
+      !!document.documentElement?.getAttribute("data-opening-effect") ||
+      new URLSearchParams(window.location.search).get("opening_effect");
 
-    if (shouldAutoPreview) {
+    // Auto-run when an opening effect is configured (public/published pages).
+    // Editor pages remain protected by isInEditorMode() inside init().
+    if (hasOpeningEffect) {
       window.openingEffectManager.init();
     }
   };

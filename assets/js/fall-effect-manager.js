@@ -16,19 +16,15 @@
 
   var EFFECT_FILE_MAP = {
     snowflakes: "snowflakes-effect.js",
-    petals: "petals-effect.js",
     petals2: "petals2-effect.js",
     hearts: "hearts-effect.js",
-    leaves: "leaves-effect.js",
     custom: "custom-icon-effect.js",
   };
 
   var EFFECT_DEFAULTS = {
     snowflakes: { count: 16, speed: 9, sway: 3, spawnInterval: 850 },
-    petals: { count: 14, speed: 11, sway: 5, spawnInterval: 900 },
     petals2: { count: 80, speed: 9, sway: 3, spawnInterval: 850 },
     hearts: { count: 10, speed: 8, bounce: 0.6, spawnInterval: 950 },
-    leaves: { count: 14, speed: 10, rotation: 720, spawnInterval: 900 },
     custom: { count: 10, speed: 9, defaultIcon: "*", spawnInterval: 1200 },
   };
 
