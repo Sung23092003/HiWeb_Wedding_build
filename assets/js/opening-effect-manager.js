@@ -4,9 +4,10 @@ if (window.openingEffectManager) {
   class OpeningEffectManager {
     constructor() {
       this.effectMap = {
-        envelope: "/assets/animations/opening/envelope.js",
         door: "/assets/animations/opening/wedding-gate.js",
+        flower: "/assets/animations/opening/flower.js",
         camera: "/assets/animations/opening/camera.js",
+        video: "/assets/animations/opening/video.js",
         heartcard: "/assets/animations/opening/heart-card.js",
       };
       this.currentEffect = null;

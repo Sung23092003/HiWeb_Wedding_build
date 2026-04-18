@@ -357,7 +357,6 @@
 
     setTimeout(() => {
       const intro = shadowRoot.getElementById("intro-stage");
-      const main = document.getElementById("main");
       shadowRoot.host.classList.add("away");
       intro.classList.add("away");
       setTimeout(() => {

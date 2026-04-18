@@ -11,20 +11,19 @@
   // --- 1. CSS INJECTION ---
   const css = `
     .envelope-container {
-      position: relative;
-      width: 100vw;
+      font-family: "Cormorant Garamond", serif;
       height: 100vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        center/cover no-repeat;
+      cursor: pointer;
     }
 
     .envelope {
       position: relative;
       width: 300px;
       height: 200px;
-      background: #fff;
       border-radius: 10px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.3);
       transition: all 0.8s ease;
@@ -42,7 +41,6 @@
       left: 0;
       width: 100%;
       height: 50%;
-      background: #f8f9fa;
       clip-path: polygon(0 0, 50% 100%, 100% 0);
       transition: all 1s ease;
     }
@@ -73,7 +71,7 @@
 
     .open-hint {
       position: absolute;
-      bottom: -40px;
+      bottom: -24px;
       left: 50%;
       transform: translateX(-50%);
       color: #fff;
@@ -82,6 +80,7 @@
     }
 
     /* Progress Bar Styles */
+    /*
     .progress-container {
       position: absolute;
       bottom: -60px;
@@ -123,6 +122,108 @@
     .progress-text.show {
       opacity: 0.8;
     }
+    */
+    .envelope-img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      top: 0;
+      left: 0;
+    }
+
+    .waxseal {
+      position: absolute;
+      top: 62%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      overflow: hidden;
+      animation: bumpbamp 1.5s infinite alternate;
+      z-index: 10;
+    }
+
+    .waxseal img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .seal-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: "Great Vibes", cursive;
+      font-size: 12px;
+      color: white;
+      letter-spacing: 1px;
+      z-index: 11;
+    }
+
+    .click-hint {
+      position: absolute;
+      bottom: 25px;
+      left: 53%;
+      transform: translateX(-50%);
+      width: 40px;
+      animation: blink 1.5s infinite;
+      z-index: 100;
+    }
+
+    .click-hint img {
+      width: 100%;
+    }
+
+    .decor-left {
+      position: absolute;
+      top: 0;
+      left: -40px;
+      width: 80px;
+      z-index: 3;
+    }
+
+    .decor-left img {
+      width: 100%;
+    }
+
+    .decor-right {
+      position: absolute;
+      top: 120px;
+      right: -40px;
+      width: 80px;
+      z-index: 3;
+    }
+
+    .decor-right img {
+      width: 100%;
+    }
+
+    @keyframes bumpbamp {
+      0% {
+        transform: translate(-50%, -50%) scale(1);
+      }
+      100% {
+        transform: translate(-50%, -50%) scale(1.2);
+      }
+    }
+
+    @keyframes blink {
+      0% {
+        opacity: 0.2;
+        transform: translateX(-50%) scale(0.9);
+      }
+      50% {
+        opacity: 1;
+        transform: translateX(-50%) scale(1);
+      }
+      100% {
+        opacity: 0.2;
+        transform: translateX(-50%) scale(0.9);
+      }
+    }
   `;
 
   const styleSheet = document.createElement("style");
@@ -134,12 +235,35 @@
   container.innerHTML = `
     <div class="envelope-container">
       <div class="envelope" id="envelope">
+      <!-- HÌNH ENVELOPE CHÍNH -->
+      <img class="envelope-img" src="https://i.postimg.cc/Dz74SwKY/envelope2.png" alt="envelope" />
+ 
         <div class="envelope-flap"></div>
+      <!-- WAX SEAL (HÌNh đỏ 3D) -->
+      <div class="waxseal">
+        <img src="https://i.postimg.cc/gJTxty6d/red-3d.png" alt="wax seal" />
+        <span class="seal-text">QH</span>
+      </div>
+      
+      <!-- CLICK HINT (MŨI TÊN) -->
+      <div class="click-hint">
+        <img src="https://i.postimg.cc/rsjPLmMF/click.png" alt="click hint" />
+      </div>
+      
+      <!-- DECORATION TRÁI (TIM) -->
+      <div class="decor-left">
+        <img src="https://i.postimg.cc/1RrTFW6H/heart-2.png" alt="decoration left" />
+      </div>
+      
+      <!-- DECORATION PHẢI (HOA) -->
+      <div class="decor-right">
+        <img src="https://i.postimg.cc/KYQkBhGc/flower.png" alt="decoration right" />
+      </div>
         <div class="envelope-content">
           <div class="ec-tag">Save The Date</div>
           <div class="ec-names">${templateData.coupleNames}</div>
           <div class="ec-date">${templateData.eventDate}</div>
-        </div>
+        </div>        
         <div class="open-hint">Click to open</div>
         <div class="progress-container" id="progressContainer">
           <div class="progress-bar" id="progressBar"></div>
