@@ -16,6 +16,7 @@
 
   var EFFECT_FILE_MAP = {
     snowflakes: "snowflakes-effect.js",
+    "snow-icon": "snow-icon-effect.js",
     petals2: "petals2-effect.js",
     hearts: "hearts-effect.js",
     custom: "custom-icon-effect.js",
@@ -23,6 +24,7 @@
 
   var EFFECT_DEFAULTS = {
     snowflakes: { count: 16, speed: 9, sway: 3, spawnInterval: 850 },
+    "snow-icon": { count: 12, speed: 8, sway: 4, spawnInterval: 900 },
     petals2: { count: 80, speed: 9, sway: 3, spawnInterval: 850 },
     hearts: { count: 10, speed: 8, bounce: 0.6, spawnInterval: 950 },
     custom: { count: 10, speed: 9, defaultIcon: "*", spawnInterval: 1200 },
@@ -97,7 +99,8 @@
     this.intervalIds = [];
     this.requestVersion = 0;
     this.__supportsCustomIcons = true;
-    this.__version = "2.0.0";
+    this.__supportsSnowIcon = true;
+    this.__version = "2.1.0";
   }
 
   /**
@@ -367,12 +370,12 @@
       "";
     var customIcons = customIconsAttr
       ? customIconsAttr
-          .split("|")
-          .map(function (icon) {
-            return String(icon || "").trim();
-          })
-          .filter(Boolean)
-          .slice(0, 3)
+        .split("|")
+        .map(function (icon) {
+          return String(icon || "").trim();
+        })
+        .filter(Boolean)
+        .slice(0, 3)
       : [];
 
     if (!customIcons.length && customIcon) {

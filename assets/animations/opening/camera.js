@@ -267,7 +267,10 @@
   // 1. KHI VỪA VÀO TRANG: Bắt đầu đếm ngược 5s để hiện Hint nút chụp
 
   shutterTimer = setTimeout(() => {
-    shadowRoot.getElementById("hint-shutter").style.display = "block";
+    const hintShutter = shadowRoot.getElementById("hint-shutter");
+    if (hintShutter) {
+      hintShutter.style.display = "block";
+    }
     //shadowRoot.getElementById("hint").style.display = "block";
   }, 5000);
 
@@ -284,7 +287,7 @@
       gain.connect(ctx.destination);
       osc.start();
       osc.stop(ctx.currentTime + 0.1);
-    } catch (e) {}
+    } catch (e) { }
   }
 
   function startCameraSequence() {
@@ -357,15 +360,31 @@
 
     setTimeout(() => {
       const intro = shadowRoot.getElementById("intro-stage");
+      const main = document.getElementById("main");
+
+      if (!intro) {
+        console.warn("[CameraEffect] intro-stage not found");
+        if (main) {
+          main.style.display = "block";
+          setTimeout(() => {
+            main.classList.add("show");
+            bloom.remove();
+          }, 100);
+        }
+        return;
+      }
+
       shadowRoot.host.classList.add("away");
       intro.classList.add("away");
       setTimeout(() => {
         intro.style.display = "none";
-        main.style.display = "block";
-        setTimeout(() => {
-          main.classList.add("show");
-          bloom.remove();
-        }, 100);
+        if (main) {
+          main.style.display = "block";
+          setTimeout(() => {
+            main.classList.add("show");
+            bloom.remove();
+          }, 100);
+        }
       }, 1000);
     }, 1200);
   }

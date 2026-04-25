@@ -373,8 +373,6 @@
   const template = `
   <div id="intro-stage">
   <div id="card">
-        <center><h1>🌟You are Invited🌟</h1></center>
-
         <div class="heart" id="heart1">
           <div id="half1">
             <div id="circle"></div>

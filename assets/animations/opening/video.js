@@ -522,6 +522,20 @@
     function finalTransition() {
       // 1. Ẩn intro trước
       const intro = shadowRoot.getElementById("intro-stage");
+
+      if (!intro) {
+        console.warn("[VideoEffect] intro-stage not found, skipping transition");
+        const main = document.getElementById("main");
+        if (main) {
+          main.style.opacity = "0";
+          TweenMax.to(main, 1, {
+            autoAlpha: 1,
+            ease: Power2.easeOut,
+          });
+        }
+        return;
+      }
+
       shadowRoot.host.classList.add("away");
       intro.classList.add("away");
 

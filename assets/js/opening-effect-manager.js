@@ -9,6 +9,7 @@ if (window.openingEffectManager) {
         camera: "/assets/animations/opening/camera.js",
         video: "/assets/animations/opening/video.js",
         heartcard: "/assets/animations/opening/heart-card.js",
+        envelope: "/assets/animations/opening/envelope.js",
       };
       this.currentEffect = null;
       this.shadowRoot = null;
